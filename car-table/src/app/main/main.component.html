@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="rows">
+    <form #inputForm="ngForm">
+      <table>
+        <tr>
+          <td>
+            <label>製造商</label>
+            <input type="text" name="manufacturer"
+              class="form-control"
+              placeholder="請輸入製造商"
+              [(ngModel)]="manufacturer"
+              #iManufacturer
+              required
+              pInputText />
+            <small class="p-error"
+              *ngIf="iManufacturer.errors && iManufacturer.errors.required">Please enter manufacturer.</small>
+          </td>
+          <td>
+            <label>類別</label>
+            <input type="text" name="type"
+              class="form-control"
+              placeholder="請輸入類別"
+              [(ngModel)]="type"
+              #iType
+              required
+              pInputText />
+            <small class="p-error"
+              *ngIf="iType.errors && iType.errors.required">Please enter type.</small>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>底價</label>
+            <input type="text" name="minPrice"
+              class="form-control"
+              [(ngModel)]="minPrice" />
+          </td>
+          <td>
+            <label>售價</label>
+            <input type="text" name="price"
+              class="form-control"
+              [(ngModel)]="price" />
+          </td>
+        </tr>
+      </table>
+    </form>
+    <div>
+      <button type="button" (click)="onAdd()">新增</button>
+      <button type="button" (click)="onClear()">清空</button>
+    </div>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <td>序號</td>
+        <td>製造商</td>
+        <td>類別</td>
+        <td>底價</td>
+        <td>售價</td>
+        <td>操作</td>
+      </tr>
+      <tr *ngFor="let carData of carDatas; let i = index;" >
+        <td #tEle>{{i + 1}}</td>
+        <td>{{carData.manufacturer}}</td>
+        <td>{{carData.type}}</td>
+        <td>{{carData.minPrice}}</td>
+        <td>{{carData.price}}</td>
+        <td>
+          <button type="button" (click)="onDelete(i)">刪除</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
